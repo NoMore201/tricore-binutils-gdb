@@ -1496,6 +1496,7 @@ HFILES_NO_SRCDIR = \
 	trad-frame.h \
 	target-float.h \
 	tramp-frame.h \
+	tricore-tdep.h \
 	type-stack.h \
 	typeprint.h \
 	ui.h \

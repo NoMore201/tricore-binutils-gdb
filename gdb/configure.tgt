@@ -670,6 +670,11 @@ tilegx-*-linux*)
 			symfile-mem.o glibc-tdep.o linux-tdep.o"
 	;;
 
+tricore-*-elf*)
+	# Target: Tricore
+	gdb_target_obs="tricore-tdep.o"
+	;;
+
 xstormy16-*-*)
 	# Target: Sanyo Xstormy16a processor
 	gdb_target_obs="xstormy16-tdep.o"
