@@ -45,9 +45,18 @@ initialize_tdesc_tricore (void)
   tdesc_create_reg (feature, "a13", 29, 1, NULL, 32, "data_ptr");
   tdesc_create_reg (feature, "a14", 30, 1, NULL, 32, "data_ptr");
   tdesc_create_reg (feature, "a15", 31, 1, NULL, 32, "data_ptr");
-  tdesc_create_reg (feature, "pcx", 32, 1, NULL, 32, "uint32");
-  tdesc_create_reg (feature, "psw", 33, 1, NULL, 32, "uint32");
-  tdesc_create_reg (feature, "pc", 34, 1, NULL, 32, "code_ptr");
+  tdesc_create_reg (feature, "lcx", 32, 1, NULL, 32, "uint32");
+  tdesc_create_reg (feature, "fcx", 33, 1, NULL, 32, "uint32");
+  tdesc_create_reg (feature, "pcxi", 34, 1, NULL, 32, "uint32");
+  tdesc_create_reg (feature, "psw", 35, 1, NULL, 32, "uint32");
+  tdesc_create_reg (feature, "pc", 36, 1, NULL, 32, "code_ptr");
+  tdesc_create_reg (feature, "icr", 37, 1, NULL, 32, "uint32");
+  tdesc_create_reg (feature, "isp", 38, 1, NULL, 32, "uint32");
+  tdesc_create_reg (feature, "btv", 39, 1, NULL, 32, "uint32");
+  tdesc_create_reg (feature, "biv", 40, 1, NULL, 32, "uint32");
+  tdesc_create_reg (feature, "syscon", 41, 1, NULL, 32, "uint32");
+  tdesc_create_reg (feature, "pmucon0", 42, 1, NULL, 32, "uint32");
+  tdesc_create_reg (feature, "dmucon", 43, 1, NULL, 32, "uint32");
 
   tdesc_tricore = result.release ();
 }

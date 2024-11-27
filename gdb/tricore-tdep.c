@@ -16,6 +16,7 @@
 #include <cassert>
 
 #include "features/tricore.c"
+#include "utils.h"
 #include "tricore-tdep.h"
 
 static enum return_value_convention
@@ -139,7 +140,7 @@ tricore_frame_cache (frame_info_ptr this_frame, void **this_cache)
   cache->regs = trad_frame_alloc_saved_regs (this_frame);
   (*this_cache) = cache;
 
-  cache->pcx = get_frame_register_unsigned (this_frame, TRICORE_PCX_REGNUM);
+  cache->pcx = get_frame_register_unsigned (this_frame, TRICORE_PCXI_REGNUM);
 
 #if 0
   /* The prologue scanner sets the address of registers stored to the stack
@@ -319,7 +320,9 @@ static const char *const tricore_register_names[] = {
   "d10", "d11", "d12", "d13", "d14", "d15",
 
   "a0",  "a1",  "a2",  "a3",  "a4",  "a5",  "a6",  "a7",  "a8", "a9",
-  "a10", "a11", "a12", "a13", "a14", "a15", "pcx", "psw", "pc",
+  "a10", "a11", "a12", "a13", "a14", "a15", "lcx", "fcx", "pcxi",
+  "psw", "pc", "icr", "isp", "btv", "biv", "syscon", "pmucon0",
+  "dmucon"
 };
 
 static struct type *
@@ -328,7 +331,7 @@ tricore_register_type (struct gdbarch *gdbarch, int regnum)
   if (tdesc_has_registers (gdbarch_target_desc (gdbarch)))
     return tdesc_register_type (gdbarch, regnum);
 
-  if (regnum == TRICORE_PSW_REGNUM || regnum == TRICORE_PCX_REGNUM)
+  if (regnum == TRICORE_PSW_REGNUM || regnum == TRICORE_PCXI_REGNUM)
     return builtin_type (gdbarch)->builtin_uint32;
   if (regnum == TRICORE_PC_REGNUM)
     return builtin_type (gdbarch)->builtin_func_ptr;
@@ -391,6 +394,7 @@ tricore_gdbarch_init (struct gdbarch_info info, struct gdbarch_list *arches)
       int i;
 
       feature = tdesc_find_feature (tdesc, "org.gnu.gdb.tricore.core");
+      gdb_printf(gdb_stdout, "feature=%p\n", feature);
       if (feature == NULL)
         return NULL;
       tdesc_data = tdesc_data_alloc ();
