@@ -11710,7 +11710,7 @@ tricore_elf32_relax_delete_bytes(bfd *abfd, asection *sec, bfd_byte *contents, E
 #define elf_backend_special_sections 		tricore_elf32_special_sections
 
 /* Now #define all necessary stuff to describe this target.  */
-#define bfd_elf32_bfd_link_hash_table_create tricore_elf32_link_hash_table_create
+//#define bfd_elf32_bfd_link_hash_table_create tricore_elf32_link_hash_table_create
 
 
 // #define USE_RELA			1
